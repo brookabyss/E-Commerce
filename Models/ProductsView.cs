@@ -12,7 +12,7 @@ namespace Commerce.Models
         [Range(1,Double.PositiveInfinity, ErrorMessage="Quantity has to be greater than 0")]
         public int Stock {get;set;}
          [Required(ErrorMessage="Product Description can't be empty")]
-        public int Description {get;set;}
+        public string Description {get;set;}
          
     }
 }

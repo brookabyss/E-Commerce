@@ -21,10 +21,30 @@ namespace Commerce.Controllers
         [Route("")]
         public IActionResult Index()
         {
+            int take= 3;
             ViewBag.Errors= new List<string>();
-            List<Products> products = _context.Products.ToList();
-            List<Orders> orders = _context.Orders.ToList();
-            List<Customers> customers = _context.Customers.ToList();
+            List<Products> products = _context.Products.OrderByDescending(m => m.CreatedAt).ToList();
+            List<Orders> orders = _context.Orders.OrderByDescending(m => m.CreatedAt).ToList();
+            List<Customers> customers = _context.Customers.OrderByDescending (m => m.CreatedAt).ToList();
+            ViewBag.TopProducts=new List<Products>();
+            ViewBag.TopCustomers=new List<Customers>();
+            ViewBag.TopOrders=new List<Orders>();
+            for(int i=0 ; i<take;i++){
+               if(i<(products.Count)){
+                     ViewBag.TopProducts.Add(products[i]);
+                }
+               if(i<(customers.Count)){
+                     ViewBag.TopCustomers.Add(customers[i]);
+               }
+               if(i<(orders.Count)){
+                    ViewBag.TopOrders.Add(orders[i]); 
+               }
+            bool test= customers.Count > i;
+            int count= customers.Count;
+            System.Console.WriteLine($"Customer vs I {test}{count}");
+               
+                
+            }
             ViewBag.Products= products;
             ViewBag.Orders= orders;
             ViewBag.Customers= customers;

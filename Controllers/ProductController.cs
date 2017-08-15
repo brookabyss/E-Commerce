@@ -53,7 +53,30 @@ namespace Commerce.Controllers
             }
             return RedirectToAction("ShowProducts");
         }
-
-
+        // Show More Products 
+        [HttpGet]
+        [Route("moreProducts")]
+         public IActionResult ShowMoreProducts (){
+             int take= 3;
+             List<Products> products = _context.Products.ToList();
+             ViewBag.TopProducts=products;
+             List<Orders> orders= _context.Orders.OrderByDescending(o=>o.CreatedAt).ToList();
+             ViewBag.TopOrders=new List<Orders> ();
+             List<Customers> customers= _context.Customers.OrderByDescending(o=>o.CreatedAt).ToList();
+            ViewBag.TopCustomers=new List<Customers> ();
+             for(int i=0 ; i<take;i++){
+            //    if(i<(products.Count)){
+            //          ViewBag.TopProducts.Add(products[i]);
+            //     }
+                    if(i<(customers.Count)){
+                            ViewBag.TopCustomers.Add(customers[i]);
+                    }
+                    if(i<(orders.Count)){
+                            ViewBag.TopOrders.Add(orders[i]); 
+                    }
+        
+             }
+          return View("Index");
+         }
     }
 }

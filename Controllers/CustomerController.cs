@@ -67,5 +67,30 @@ namespace Commerce.Controllers
             }
             return View("customer");
         }
+
+        [HttpGet]
+        [Route("moreCustomers")]
+         public IActionResult ShowMoreCustomers (){
+             int take= 3;
+             List<Products> products = _context.Products.OrderByDescending(o=>o.CreatedAt).ToList();
+             ViewBag.TopProducts=new List<Products> ();
+             List<Orders> orders= _context.Orders.OrderByDescending(o=>o.CreatedAt).ToList();
+             ViewBag.TopOrders=new List<Orders> ();
+             List<Customers> customers= _context.Customers.ToList();
+            ViewBag.TopCustomers=customers;
+             for(int i=0 ; i<take;i++){
+                    if(i<(products.Count)){
+                            ViewBag.TopProducts.Add(products[i]);
+                        }
+                    // if(i<(customers.Count)){
+                    //         ViewBag.TopCustomers.Add(customers[i]);
+                    // }
+                    if(i<(orders.Count)){
+                            ViewBag.TopOrders.Add(orders[i]); 
+                    }
+        
+             }
+          return View("Index");
+         }
     }
 }
