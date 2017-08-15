@@ -1,0 +1,22 @@
+
+<h1><a href="">Dashboard</a>|<a href="products">Products</a>|<a href="orders">Orders</a>|<a href="customers">Customers</a></h1>
+
+
+@foreach(var product in ViewBag.Products){
+    <img src=@product.Image alt="Product Image">
+    <p>@product.Name</p>
+    <p>(@product.Stock)</p>
+}
+<a href="#">show More..</a>
+
+<h1>Recent Orders</h1>
+@foreach(var order in ViewBag.Orders){
+    <p>@order.Customers.Name purchased @order.Quantity @order.Products.Name @order.CreatedAt</p>
+}
+<a href="#">show all orders..</a>
+
+<h1>New Customers</h1>
+@foreach(var customer in ViewBag.Customers){
+    <p>customer.Name joined the store @customer.CreatedAt</p>
+}
+<a href="#">show all customers..</a>

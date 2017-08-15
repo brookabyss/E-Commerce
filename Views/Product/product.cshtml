@@ -1,0 +1,21 @@
+@model Commerce.Models.ProductsView
+
+<h1>Add a New Product</h1>
+
+<form asp-controller="Product" asp-action="CreateProducts" method="post">
+    <label asp-for="Name"></label>Name:<br>
+    <input asp-for="Name"><br>
+    <label asp-for="Image"></label>(Url):<br>
+    <input asp-for="Image"><br>
+    <label asp-for="Description"></label><br>
+   <teaxtarea asp-for="Description"></teaxtarea><br>
+   <label asp-for="Stock">Quantity: </label>
+   <input asp-for="Stock" type="number"><br>
+   <button type="submit">Create</button>
+</form>
+
+@foreach(var product in ViewBag.Products){
+    <img src=@product.Image alt="Product Image">
+    <p>@product.Name</p>
+    <p>(@product.Stock)</p>
+}

@@ -1,0 +1,41 @@
+@model Commerce.Models.OrdersView 
+
+<h1>Add a New Order</h1>
+
+<form asp-controller="Order" asp-action="CreateOrders" method="post">
+    <label for="">Customer Name</label>
+    <select asp-for="CustomersId">
+        @foreach(var c in ViewBag.Customers){
+            <option value=@c.CustomersId>@c.Name</option>
+        }
+    </select><br>
+
+    <label for="">Order</label>
+    <input asp-for="Quantity" type="number">
+
+    <select asp-for="ProductsId">
+        @foreach(var p in ViewBag.Products){
+            <option value=@p.ProductsId>@p.Name</option>
+        }
+    </select><br>
+    <button type="submit">Order</button>
+
+</form>
+
+<table>
+    <tr>
+        <th>Customer Name</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Date</th>
+        @foreach(var o in ViewBag.Orders){
+            <tr>
+                <td>o.Customers.Name</td>
+                <td>o.Products.Name</td>
+                <td>o.Quantity</td>
+                <td>o.CreatedAt</td>
+            </tr>
+
+        }
+    </tr>
+</table>

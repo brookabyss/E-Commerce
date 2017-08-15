@@ -1,0 +1,6 @@
+/*Write all of your CSS here*/
+img{
+    height: 50px;
+    width:50px;
+    border: solid 1px black;
+}
