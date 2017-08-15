@@ -32,12 +32,22 @@ namespace Commerce.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("orders/new")]
-        public IActionResult CreateOrders()
+        public IActionResult CreateOrders(OrdersView OrdView)
         {
+            System.Console.WriteLine($"Order action ******** {OrdView.CustomersId} {OrdView.Quantity}");
             if(ModelState.IsValid){
-
+                Orders Ord= new Orders{
+                    CustomersId= (int)OrdView.CustomersId,
+                    ProductsId= (int)OrdView.ProductsId,
+                    Quantity= (int)OrdView.Quantity,
+                    CreatedAt= DateTime.Now,
+                    UpdatedAt= DateTime.Now,
+                };
+                _context.Orders.Add(Ord);
+                _context.SaveChanges();
+                return RedirectToAction("ShowOrders");
             }
             else{
                  ViewBag.Errors=ModelState.Values;

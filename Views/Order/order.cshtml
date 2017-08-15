@@ -1,5 +1,8 @@
 @model Commerce.Models.OrdersView 
 
+<h1><a href="">Dashboard</a>|<a href="products">Products</a>|<a href="orders">Orders</a>|<a href="customers">Customers</a></h1>
+
+
 <h1>Add a New Order</h1>
 
 <form asp-controller="Order" asp-action="CreateOrders" method="post">
@@ -30,10 +33,10 @@
         <th>Date</th>
         @foreach(var o in ViewBag.Orders){
             <tr>
-                <td>o.Customers.Name</td>
-                <td>o.Products.Name</td>
-                <td>o.Quantity</td>
-                <td>o.CreatedAt</td>
+                <td>@o.Customers.Name</td>
+                <td>@o.Products.Name</td>
+                <td>@o.Quantity</td>
+                <td>@o.CreatedAt</td>
             </tr>
 
         }
