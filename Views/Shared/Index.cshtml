@@ -1,6 +1,8 @@
 
 <h1><a href="/">Dashboard</a>|<a href="products">Products</a>|<a href="orders">Orders</a>|<a href="customers">Customers</a></h1>
-
+<script>
+    console.log(@ViewBag.JQtest);
+</script>
 
 @foreach(var product in ViewBag.TopProducts){
     <img src=@product.Image alt="Product Image">

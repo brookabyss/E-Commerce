@@ -48,7 +48,7 @@ namespace Commerce.Controllers
             ViewBag.Products= products;
             ViewBag.Orders= orders;
             ViewBag.Customers= customers;
-
+            ViewBag.JQtest=155;
             return View();
         }
     }
